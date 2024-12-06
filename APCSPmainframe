@@ -1,4 +1,5 @@
 import json
+import random
 
 # Load questions from the JSON file
 def load_questions():
@@ -18,48 +19,128 @@ def display_points(questions, category):
 def ask_question(questions, category, points):
     q = questions[category][str(points)]
     print(f"\nFor {points} points in {category}: {q['question']}")
-    answer = input("Your answer: ").strip().lower()
     
-    # Check if the answer matches the correct answer (case insensitive)
-    if answer == q['answer'].lower():
+    # Display the choices
+    for i, choice in enumerate(q['choices'], 1):
+        print(f"{i}. {choice}")
+    
+    # Get the player's answer
+    try:
+        answer_choice = int(input("Your answer (enter the number): ").strip())
+        if answer_choice < 1 or answer_choice > len(q['choices']):
+            print("Invalid choice. Try again.")
+            return 0
+    except ValueError:
+        print("Invalid input. Enter a number.")
+        return 0
+    
+    # Check if the answer is correct
+    if q['choices'][answer_choice - 1].lower() == q['answer'].lower():
         print("Correct!")
         return points
     else:
         print(f"Wrong! The correct answer was: {q['answer']}")
         return 0
 
+def final_jeopardy(questions, teams, score):
+    # Select a random category for Final Jeopardy
+    final_category = random.choice(list(questions.keys()))
+    print(f"\nFinal Jeopardy! The category is: {final_category}")
+    
+    # Ask each team for their wager
+    for team in teams:
+        wager = int(input(f"Team {team}, how much would you like to wager? (Your current score: {score[team]}): ").strip())
+        if wager > score[team]:
+            print("You cannot wager more than your current score. Wagering the maximum.")
+            wager = score[team]
+
+        print(f"\n{team}, for {wager} points, your Final Jeopardy question is:")
+        
+        # Ask the Final Jeopardy question
+        points = 1000  # Points are fixed for Final Jeopardy
+        score[team] += ask_question(questions, final_category, points) if wager > 0 else 0
+
 def main():
     print("Welcome to AP CSP Jeopardy!")
-    print("Choose a category and a point value to answer questions!")
+    print("Multiple teams will play. Choose a category and a point value to answer questions!")
     
-    questions = load_questions()  # Load questions from JSON
-    score = 0
+    # Load questions from JSON
+    questions = load_questions()  
+    score = {}  # Dictionary to store each team's score
+
+    # Get the number of teams
+    num_teams = int(input("Enter the number of teams: ").strip())
+    teams = []
+    for i in range(num_teams):
+        team_name = input(f"Enter name for Team {i + 1}: ").strip()
+        teams.append(team_name)
+        score[team_name] = 0  # Initialize score for each team
+
+    # Shuffle teams for fairness
+    random.shuffle(teams)
+
+    # Turn counter
+    team_index = 0
 
     while True:
-        display_categories(questions)
-        category = input("\nChoose a category (or type 'exit' to quit): ").strip()
-        
-        if category.lower() == 'exit':
+        if not questions:
+            print("All categories have been used. Game over!")
             break
+
+        # Display available categories and points
+        display_categories(questions)
+        
+        # Current team takes their turn
+        current_team = teams[team_index]
+        print(f"\n{current_team}'s turn!")
+        
+        category = input("\nChoose a category: ").strip()
         if category not in questions:
             print("Invalid category. Try again.")
             continue
         
         display_points(questions, category)
         
-        try:
-            points = int(input("Choose a point value: ").strip())
-            if str(points) not in questions[category]:
-                print("Invalid point value. Try again.")
-                continue
-        except ValueError:
-            print("Invalid input. Enter a number.")
-            continue
+        # List of available points in the chosen category
+        available_points = list(questions[category].keys())
         
-        score += ask_question(questions, category, points)
-        print(f"Your current score is: {score} points.")
-    
-    print(f"\nGame over! Your final score is: {score} points. Thanks for playing!")
+        while available_points:
+            try:
+                points = int(input("Choose a point value: ").strip())
+                if str(points) not in available_points:
+                    print("Invalid point value. Try again.")
+                    continue
+            except ValueError:
+                print("Invalid input. Enter a number.")
+                continue
+
+            # Ask the question and update score
+            score[current_team] += ask_question(questions, category, points)
+            available_points.remove(str(points))  # Remove the used point value
+            
+            print(f"{current_team}'s current score: {score[current_team]} points.")
+            
+            # If all points are used for the category, remove it
+            if not available_points:
+                print(f"\nAll questions in the category '{category}' have been used. Removing this category.")
+                del questions[category]
+                break
+
+        # Move to the next team's turn
+        team_index = (team_index + 1) % num_teams
+
+        # Ask if players want to continue or quit
+        play_again = input("\nDo you want to continue to the next round? (yes/no): ").strip().lower()
+        if play_again != "yes":
+            break
+
+    # Final Jeopardy
+    final_jeopardy(questions, teams, score)
+
+    # Display final scores
+    print("\nGame over! Final scores:")
+    for team, team_score in score.items():
+        print(f"{team}: {team_score} points")
 
 if __name__ == "__main__":
     main()

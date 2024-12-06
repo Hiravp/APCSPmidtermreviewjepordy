@@ -2,90 +2,120 @@
     "Data": {
       "100": {
         "question": "What is the term for organizing data to reduce redundancy?",
+        "choices": ["normalization", "denormalization", "compression", "fragmentation"],
         "answer": "normalization"
       },
       "200": {
         "question": "Which sorting algorithm has a worst-case time complexity of O(n^2)?",
+        "choices": ["quick sort", "merge sort", "bubble sort", "heap sort"],
         "answer": "bubble sort"
       },
       "300": {
         "question": "What type of data structure follows FIFO (First In, First Out)?",
+        "choices": ["queue", "stack", "array", "linked list"],
         "answer": "queue"
       },
       "400": {
         "question": "What is the Big-O notation for searching in a balanced binary search tree?",
+        "choices": ["O(n)", "O(log n)", "O(n^2)", "O(1)"],
         "answer": "O(log n)"
       }
     },
     "Internet": {
       "100": {
         "question": "What does 'URL' stand for?",
+        "choices": ["Uniform Resource Locator", "Universal Resource Locator", "Uniform Reference Locator", "Universal Reference Locator"],
         "answer": "Uniform Resource Locator"
       },
       "200": {
         "question": "Which protocol is secure: HTTP or HTTPS?",
+        "choices": ["HTTP", "HTTPS", "FTP", "SMTP"],
         "answer": "HTTPS"
       },
       "300": {
         "question": "What does a firewall do in a network?",
+        "choices": [
+          "It monitors and filters incoming and outgoing traffic based on security rules.",
+          "It increases the speed of the network.",
+          "It stores data temporarily.",
+          "It encrypts the data sent over the network."
+        ],
         "answer": "It monitors and filters incoming and outgoing traffic based on security rules."
       },
       "400": {
         "question": "What is the term for converting a domain name into an IP address?",
+        "choices": ["DNS resolution", "IP resolution", "URL parsing", "Domain resolving"],
         "answer": "DNS resolution"
       }
     },
     "Network": {
       "100": {
         "question": "What does 'MAC' stand for in 'MAC Address'?",
+        "choices": ["Media Access Control", "Multiple Access Control", "Maximum Access Control", "Minimum Access Control"],
         "answer": "Media Access Control"
       },
       "200": {
         "question": "Which layer of the OSI model ensures reliable delivery of data?",
+        "choices": ["Transport", "Network", "Data Link", "Physical"],
         "answer": "Transport"
       },
       "300": {
         "question": "What type of attack floods a network with requests to overload it?",
+        "choices": ["DDoS (Distributed Denial of Service)", "Phishing", "Man-in-the-middle", "Spoofing"],
         "answer": "DDoS (Distributed Denial of Service)"
       },
       "400": {
         "question": "What device amplifies a network signal but does not filter traffic?",
-        "answer": "repeater"
+        "choices": ["Repeater", "Router", "Firewall", "Switch"],
+        "answer": "Repeater"
       }
     },
     "Binary Code": {
       "100": {
         "question": "What is the binary equivalent of decimal number 15?",
+        "choices": ["1111", "1010", "1001", "1110"],
         "answer": "1111"
       },
       "200": {
         "question": "What is 1010 + 101 in binary?",
+        "choices": ["1111", "1001", "1101", "1011"],
         "answer": "1111"
       },
       "300": {
         "question": "Convert hexadecimal 'F' to binary.",
+        "choices": ["1111", "1101", "1011", "1001"],
         "answer": "1111"
       },
       "400": {
         "question": "What is the two's complement of 1010?",
+        "choices": ["0110", "0101", "1001", "1011"],
         "answer": "0110"
       }
     },
     "Java Programming": {
       "100": {
         "question": "What keyword is used to create a constant in Java?",
+        "choices": ["final", "static", "const", "immutable"],
         "answer": "final"
       },
       "200": {
         "question": "What is the difference between '==' and '.equals()' in Java?",
+        "choices": [
+          "'==' compares references, '.equals()' compares values.",
+          "'==' compares values, '.equals()' compares references.",
+          "'==' and '.equals()' are the same.",
+          "'==' compares object identity, '.equals()' compares object structure."
+        ],
         "answer": "'==' compares references, '.equals()' compares values."
       },
       "300": {
         "question": "Write the output: int x = 5; System.out.println(x++);",
+        "choices": ["5", "6", "Error", "None"],
         "answer": "5"
       },
       "400": {
         "question": "What is the return type of a method that does not return a value?",
+        "choices": ["void", "null", "None", "undefined"],
         "answer": "void"
       }
     }
