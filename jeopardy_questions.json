@@ -1,0 +1,93 @@
+{
+    "Data": {
+      "100": {
+        "question": "What is the term for organizing data to reduce redundancy?",
+        "answer": "normalization"
+      },
+      "200": {
+        "question": "Which sorting algorithm has a worst-case time complexity of O(n^2)?",
+        "answer": "bubble sort"
+      },
+      "300": {
+        "question": "What type of data structure follows FIFO (First In, First Out)?",
+        "answer": "queue"
+      },
+      "400": {
+        "question": "What is the Big-O notation for searching in a balanced binary search tree?",
+        "answer": "O(log n)"
+      }
+    },
+    "Internet": {
+      "100": {
+        "question": "What does 'URL' stand for?",
+        "answer": "Uniform Resource Locator"
+      },
+      "200": {
+        "question": "Which protocol is secure: HTTP or HTTPS?",
+        "answer": "HTTPS"
+      },
+      "300": {
+        "question": "What does a firewall do in a network?",
+        "answer": "It monitors and filters incoming and outgoing traffic based on security rules."
+      },
+      "400": {
+        "question": "What is the term for converting a domain name into an IP address?",
+        "answer": "DNS resolution"
+      }
+    },
+    "Network": {
+      "100": {
+        "question": "What does 'MAC' stand for in 'MAC Address'?",
+        "answer": "Media Access Control"
+      },
+      "200": {
+        "question": "Which layer of the OSI model ensures reliable delivery of data?",
+        "answer": "Transport"
+      },
+      "300": {
+        "question": "What type of attack floods a network with requests to overload it?",
+        "answer": "DDoS (Distributed Denial of Service)"
+      },
+      "400": {
+        "question": "What device amplifies a network signal but does not filter traffic?",
+        "answer": "repeater"
+      }
+    },
+    "Binary Code": {
+      "100": {
+        "question": "What is the binary equivalent of decimal number 15?",
+        "answer": "1111"
+      },
+      "200": {
+        "question": "What is 1010 + 101 in binary?",
+        "answer": "1111"
+      },
+      "300": {
+        "question": "Convert hexadecimal 'F' to binary.",
+        "answer": "1111"
+      },
+      "400": {
+        "question": "What is the two's complement of 1010?",
+        "answer": "0110"
+      }
+    },
+    "Java Programming": {
+      "100": {
+        "question": "What keyword is used to create a constant in Java?",
+        "answer": "final"
+      },
+      "200": {
+        "question": "What is the difference between '==' and '.equals()' in Java?",
+        "answer": "'==' compares references, '.equals()' compares values."
+      },
+      "300": {
+        "question": "Write the output: int x = 5; System.out.println(x++);",
+        "answer": "5"
+      },
+      "400": {
+        "question": "What is the return type of a method that does not return a value?",
+        "answer": "void"
+      }
+    }
+  }
+  

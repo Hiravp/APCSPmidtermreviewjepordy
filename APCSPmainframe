@@ -1,100 +1,65 @@
-# Jeopardy Game for AP CSP Midterm
-questions = {
-   "Data": {
-       100: {"question": "What is the term for organizing data to reduce redundancy?", "answer": "normalization"},
-       200: {"question": "Which sorting algorithm has a worst-case time complexity of O(n^2)?", "answer": "bubble sort"},
-       300: {"question": "What type of data structure follows FIFO (First In, First Out)?", "answer": "queue"},
-       400: {"question": "What is the Big-O notation for searching in a balanced binary search tree?",
-             "answer": "O(log n)"},
-   },
-   "Internet": {
-       100: {"question": "What does 'URL' stand for?", "answer": "Uniform Resource Locator"},
-       200: {"question": "Which protocol is secure: HTTP or HTTPS?", "answer": "HTTPS"},
-       300: {"question": "What does a firewall do in a network?",
-             "answer": "It monitors and filters incoming and outgoing traffic based on security rules."},
-       400: {"question": "What is the term for converting a domain name into an IP address?",
-             "answer": "DNS resolution"},
-   },
-   "Network": {
-       100: {"question": "What does 'MAC' stand for in 'MAC Address'?", "answer": "Media Access Control"},
-       200: {"question": "Which layer of the OSI model ensures reliable delivery of data?", "answer": "Transport"},
-       300: {"question": "What type of attack floods a network with requests to overload it?",
-             "answer": "DDoS (Distributed Denial of Service)"},
-       400: {"question": "What device amplifies a network signal but does not filter traffic?",
-             "answer": "repeater"},
-   },
-   "Binary Code": {
-       100: {"question": "What is the binary equivalent of decimal number 15?", "answer": "1111"},
-       200: {"question": "What is 1010 + 101 in binary?", "answer": "11111"},
-       300: {"question": "Convert hexadecimal 'F' to binary.", "answer": "1111"},
-       400: {"question": "What is the two's complement of 1010?", "answer": "0110"},
-   },
-   "Java Programming": {
-       100: {"question": "What keyword is used to create a constant in Java?", "answer": "final"},
-       200: {"question": "What is the difference between '==' and '.equals()' in Java?",
-             "answer": "'==' compares references, '.equals()' compares values."},
-       300: {"question": "Write the output: int x = 5; System.out.println(x++);", "answer": "5"},
-       400: {"question": "What is the return type of a method that does not return a value?", "answer": "void"},
-   }
-}
+import json
 
+# Load questions from the JSON file
+def load_questions():
+    with open('jeopardy_questions.json', 'r') as file:
+        return json.load(file)
 
-def display_categories():
-   print("\nCategories:")
-   for category in questions:
-       print(f"- {category}")
+def display_categories(questions):
+    print("\nCategories:")
+    for category in questions:
+        print(f"- {category}")
 
+def display_points(questions, category):
+    print(f"\nPoints available for {category}:")
+    for points in questions[category]:
+        print(f"{points} points")
 
-def display_points(category):
-   print(f"\nPoints available for {category}:")
-   for points in questions[category]:
-       print(f"{points} points")
-
-
-def ask_question(category, points):
-   q = questions[category][points]
-   print(f"\nFor {points} points in {category}: {q['question']}")
-   answer = input("Your answer: ").strip().lower()
-   if answer == q['answer'].lower():
-       print("Correct!")
-       return points
-   else:
-       print(f"Wrong! The correct answer was: {q['answer']}")
-       return 0
-
+def ask_question(questions, category, points):
+    q = questions[category][str(points)]
+    print(f"\nFor {points} points in {category}: {q['question']}")
+    answer = input("Your answer: ").strip().lower()
+    
+    # Check if the answer matches the correct answer (case insensitive)
+    if answer == q['answer'].lower():
+        print("Correct!")
+        return points
+    else:
+        print(f"Wrong! The correct answer was: {q['answer']}")
+        return 0
 
 def main():
-   print("Welcome to AP CSP Jeopardy!")
-   print("Choose a category and a point value to answer questions!")
-   score = 0
-  
-   while True:
-       display_categories()
-       category = input("\nChoose a category (or type 'exit' to quit): ").strip()
-       if category.lower() == 'exit':
-           break
-       if category not in questions:
-           print("Invalid category. Try again.")
-           continue
-       display_points(category)
-       try:
-           points = int(input("Choose a point value: ").strip())
-           if points not in questions[category]:
-               print("Invalid point value. Try again.")
-               continue
-       except ValueError:
-           print("Invalid input. Enter a number.")
-           continue
-      
-       score += ask_question(category, points)
-       print(f"Your current score is: {score} points.")
+    print("Welcome to AP CSP Jeopardy!")
+    print("Choose a category and a point value to answer questions!")
+    
+    questions = load_questions()  # Load questions from JSON
+    score = 0
 
-
-   print(f"\nGame over! Your final score is: {score} points. Thanks for playing!")
-
+    while True:
+        display_categories(questions)
+        category = input("\nChoose a category (or type 'exit' to quit): ").strip()
+        
+        if category.lower() == 'exit':
+            break
+        if category not in questions:
+            print("Invalid category. Try again.")
+            continue
+        
+        display_points(questions, category)
+        
+        try:
+            points = int(input("Choose a point value: ").strip())
+            if str(points) not in questions[category]:
+                print("Invalid point value. Try again.")
+                continue
+        except ValueError:
+            print("Invalid input. Enter a number.")
+            continue
+        
+        score += ask_question(questions, category, points)
+        print(f"Your current score is: {score} points.")
+    
+    print(f"\nGame over! Your final score is: {score} points. Thanks for playing!")
 
 if __name__ == "__main__":
-   main()
-
-
-
+    main()
