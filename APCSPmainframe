@@ -94,6 +94,7 @@ def main():
         current_team = teams[team_index]
         print(f"\n{current_team}'s turn!")
         
+        # Allow the team to choose a category
         category = input("\nChoose a category: ").strip()
         if category not in questions:
             print("Invalid category. Try again.")
