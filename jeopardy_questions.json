@@ -1,9 +1,9 @@
 {
     "Data": {
       "100": {
-        "question": "What is the term for organizing data to reduce redundancy?",
-        "choices": ["normalization", "denormalization", "compression", "fragmentation"],
-        "answer": "normalization"
+        "question": "Which of the following is a true statement about data compression?",
+        "choices": ["Data compression is only useful for files being transmitted over the internet.", "Regardless of the compression technique used, once a data file is compressed, it cannot be restored to it's original state.", "Sending a compressed version of a file ensures that the contents of the file cannot be interceted by an unauthorized user.", "There are trade-offs involved in choosing a compression technique for storing and transmitting data."],
+        "answer": "There are trade-offs involved in choosing a compression technique for storing and transmitting data."
       },
       "200": {
         "question": "Which sorting algorithm has a worst-case time complexity of O(n^2)?",
@@ -70,21 +70,21 @@
         "answer": "Repeater"
       }
     },
-    "Binary Code": {
+    "Conversions": {
       "100": {
-        "question": "What is the binary equivalent of decimal number 15?",
-        "choices": ["1111", "1010", "1001", "1110"],
-        "answer": "1111"
+        "question": "What is the decimal form of the binary number 1001010",
+        "choices": ["74", "75", "76", "77"],
+        "answer": "74"
       },
       "200": {
-        "question": "What is 1010 + 101 in binary?",
-        "choices": ["1111", "1001", "1101", "1011"],
+        "question": "What is the hexadecimal form of 56",
+        "choices": ["56", "55", "57", "58"],
         "answer": "1111"
       },
       "300": {
-        "question": "Convert hexadecimal 'F' to binary.",
-        "choices": ["1111", "1101", "1011", "1001"],
-        "answer": "1111"
+        "question": "An online store uses 6-bit binary sequences to indentify each unique item foir sale.  The store plans to increase the number if items it sells and is considering using 7-bit binary sequences.  Which of the following best describes the result of using 7-bit sequences instead of 6-bit sequences?",
+        "choices": ["2 more items can be uniquely identified", "10 more items can be uniquely identified", "2 times as many items can be uniquely identified", "10 times as many items can be uniquely identified"],
+        "answer": "2 times as many items can be uniquely identified"
       },
       "400": {
         "question": "What is the two's complement of 1010?",
